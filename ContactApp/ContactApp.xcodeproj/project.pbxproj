@@ -28,6 +28,8 @@
 		9BD07EBA235B37CB00C7EC98 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */; };
 		9BD07EC2235B3B6900C7EC98 /* ListContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EBE235B3B6900C7EC98 /* ListContactService.swift */; };
 		9BD07EC6235B3DD400C7EC98 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EC5235B3DD400C7EC98 /* CoreDataStack.swift */; };
+		9BD07ECC235B468600C7EC98 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07ECA235B468600C7EC98 /* Person+CoreDataClass.swift */; };
+		9BD07ECD235B468600C7EC98 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07ECB235B468600C7EC98 /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		9BD07EBE235B3B6900C7EC98 /* ListContactService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListContactService.swift; sourceTree = "<group>"; };
 		9BD07EBF235B3B6900C7EC98 /* DetailContactService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailContactService.swift; sourceTree = "<group>"; };
 		9BD07EC5235B3DD400C7EC98 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		9BD07ECA235B468600C7EC98 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9BD07ECB235B468600C7EC98 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 				9BD07EB2235B364900C7EC98 /* ViewModel */,
 				9BD07EB7235B372600C7EC98 /* Views */,
 				9BD07E9B235B321000C7EC98 /* Wrapper */,
+				9BD07EC9235B452500C7EC98 /* Model */,
 			);
 			path = ContactApp;
 			sourceTree = "<group>";
@@ -235,6 +240,15 @@
 				9BD07EBC235B3B6800C7EC98 /* UpdateContactService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9BD07EC9235B452500C7EC98 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9BD07ECA235B468600C7EC98 /* Person+CoreDataClass.swift */,
+				9BD07ECB235B468600C7EC98 /* Person+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +385,7 @@
 			files = (
 				9BD07EC6235B3DD400C7EC98 /* CoreDataStack.swift in Sources */,
 				9BD07E9A235B320600C7EC98 /* CoreDataManager.swift in Sources */,
+				9BD07ECD235B468600C7EC98 /* Person+CoreDataProperties.swift in Sources */,
 				9BD07EA3235B345000C7EC98 /* Colors.swift in Sources */,
 				9BD07EBA235B37CB00C7EC98 /* APIConstants.swift in Sources */,
 				9BD07EA9235B359D00C7EC98 /* ListViewController.swift in Sources */,
@@ -382,6 +397,7 @@
 				9BD07EA0235B345000C7EC98 /* LoadingIndicator.swift in Sources */,
 				9BD07EC2235B3B6900C7EC98 /* ListContactService.swift in Sources */,
 				9BD07E98235B320600C7EC98 /* WebServiceManager.swift in Sources */,
+				9BD07ECC235B468600C7EC98 /* Person+CoreDataClass.swift in Sources */,
 				9BD07EA1235B345000C7EC98 /* Reachability.swift in Sources */,
 				9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */,
 			);
