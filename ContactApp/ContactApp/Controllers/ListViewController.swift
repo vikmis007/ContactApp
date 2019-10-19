@@ -99,7 +99,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let person = viewModel?.fetchedResultsController.object(at: indexPath)
         let detailVC: DetailViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
-        detailVC?.personId = person.id
+        detailVC?.personId = person?.id
         self.navigationController?.pushViewController(detailVC!, animated: true)
     }
 }

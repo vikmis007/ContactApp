@@ -13,6 +13,7 @@
 		9B45BCC4235B83F00023CFD0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EA7235B359D00C7EC98 /* DetailViewController.swift */; };
 		9B45BCC5235B83F00023CFD0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EAC235B364100C7EC98 /* DetailViewModel.swift */; };
 		9B45BCC7235B8BD10023CFD0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B45BCC6235B8BD10023CFD0 /* User.swift */; };
+		9B45BCC8235B900D0023CFD0 /* UpdateContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EBC235B3B6800C7EC98 /* UpdateContactService.swift */; };
 		9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */; };
 		9BD07E6A235B30FB00C7EC98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E68235B30FB00C7EC98 /* Main.storyboard */; };
 		9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E6B235B30FB00C7EC98 /* ContactApp.xcdatamodeld */; };
@@ -395,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B45BCC8235B900D0023CFD0 /* UpdateContactService.swift in Sources */,
 				9B45BCC3235B83F00023CFD0 /* DetailContactService.swift in Sources */,
 				9B45BCC4235B83F00023CFD0 /* DetailViewController.swift in Sources */,
 				9B45BCC5235B83F00023CFD0 /* DetailViewModel.swift in Sources */,

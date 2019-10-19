@@ -13,7 +13,7 @@ protocol DetailViewModelProtocol: class {
 }
 
 class DetailViewModel {
-    internal var person: Person?
+    internal var user: User?
     internal var apiErrorMessage: APIErrorEnum?
     
     weak var delegate: DetailViewModelProtocol?
@@ -21,24 +21,24 @@ class DetailViewModel {
     private let updateService = UpdateContactService()
     
     func getContactDetail(userId: Int32) {
-        detailService.getContactDetail(userId: userId) { (person, errorEnum) in
+        detailService.getContactDetail(userId: userId) { (user, errorEnum) in
             if let msg = errorEnum {
                 self.apiErrorMessage = msg
             } else {
-                self.person = person
+                self.user = user
             }
             self.delegate?.updateUI()
         }
     }
     
-    func toggleFavorite(userId: Int, isFavorite: Bool) {
+    func toggleFavorite(userId: Int32, isFavorite: Bool) {
         let param:[String:Bool] = ["favorite": isFavorite]
-        updateService.updateContact(userId: userId, params: param) { (person, errorEnum) in
+        updateService.updateContact(userId: userId, params: param) { (user, errorEnum) in
             if let msg = errorEnum {
                 self.apiErrorMessage = msg
             } else {
-                self.person = person
-                CoreDataManager.shared.updateObject(person: self.person!)
+                self.user = user
+                //TODO: - Update in local DB
             }
             self.delegate?.updateUI()
         }

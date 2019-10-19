@@ -37,20 +37,20 @@ class DetailViewController: UIViewController {
         viewModel?.getContactDetail(userId: personId ?? 0)
     }
     @IBAction func messageBtnTapped(_ sender: UIButton) {
-        sendTextMessage(phoneNumber: (viewModel?.person?.phone)!)
+        sendTextMessage(phoneNumber: (viewModel?.user?.phoneNumber)!)
     }
     
     @IBAction func callBtnTapped(_ sender: UIButton) {
-        let phoneNumber = "tel://\((viewModel?.person?.phone)!)"
+        let phoneNumber = "tel://\((viewModel?.user?.phoneNumber)!)"
         UIApplication.shared.open(URL(string: phoneNumber)!, options: [:], completionHandler: nil)
     }
     
     @IBAction func emailBtnTapped(_ sender: UIButton) {
-        sendEmail(recipient: (viewModel?.person?.email)!)
+        sendEmail(recipient: (viewModel?.user?.email)!)
     }
     
     @IBAction func favoriteBtnTapped(_ sender: UIButton) {
-        let isFavorite = viewModel?.person?.favorite
+        let isFavorite = viewModel?.user?.favorite
         viewModel?.toggleFavorite(userId: personId ?? 0, isFavorite: !(isFavorite!))
     }
     
@@ -109,10 +109,10 @@ class DetailViewController: UIViewController {
     }
     
     @objc func editBtnTapped() {
-        let addEditVC: AddEditViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEditViewController") as? AddEditViewController
-        addEditVC?.personOrig = viewModel?.person
-        addEditVC?.isNavigatedForEdit = true
-        self.present(addEditVC!, animated: true, completion: nil)
+//        let addEditVC: AddEditViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEditViewController") as? AddEditViewController
+//        addEditVC?.personOrig = viewModel?.person
+//        addEditVC?.isNavigatedForEdit = true
+//        self.present(addEditVC!, animated: true, completion: nil)
     }
     
     private func showAlert(title: String, message: String) {
@@ -134,11 +134,11 @@ extension DetailViewController: DetailViewModelProtocol {
             }
             errorView.isHidden = false
         } else {
-            self.profileImage.cacheImage(urlString: viewModel?.person?.profilePic ?? "")
-            self.fullName.text = viewModel?.person?.fullName
-            self.emailLabel.text = viewModel?.person?.email
-            self.mobileLabel.text =  viewModel?.person?.phone
-            if viewModel?.person?.favorite ?? false {
+            self.profileImage.cacheImage(urlString: viewModel?.user?.profilePic ?? "")
+            self.fullName.text = viewModel?.user?.fullName
+            self.emailLabel.text = viewModel?.user?.email
+            self.mobileLabel.text =  viewModel?.user?.phoneNumber
+            if viewModel?.user?.favorite ?? false {
                 favoriteBtn.backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
             } else {
                 favoriteBtn.backgroundColor = Colors.backgroundColor()

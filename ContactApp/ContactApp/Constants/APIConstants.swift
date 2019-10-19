@@ -15,6 +15,8 @@ struct APIConstants {
 
     ///URL Endpoints
     static let GET_CONTACTS = "/contacts.json"
+    static let DETAIL_CONTACT_URL = "/contacts/{id}.json"
+    static let UPDATE_CONTACT_URL = "/contacts/{id}.json"
     static let SAVE_CONTACT = "/contacts.json"
 
     /// HTTP Methods:

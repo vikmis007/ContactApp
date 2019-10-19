@@ -7,24 +7,22 @@
 //
 
 import Foundation
-let DETAIL_CONTACT_URL = "/contacts/{id}.json"
+
 
 class DetailContactService{
-    private let webService = WebService()
+    private let webService = WebServiceManager()
     
-    func getContactDetail(userId: Int32, completion: @escaping (_ contact:Person?, _ errorMessage: APIErrorEnum?) -> ()) {
-        let url = DETAIL_CONTACT_URL.replacingOccurrences(of: "{id}", with: String(userId))
+    func getContactDetail(userId: Int32, completion: @escaping (_ contact:User?, _ errorMessage: APIErrorEnum?) -> ()) {
+        let url = APIConstants.DETAIL_CONTACT_URL.replacingOccurrences(of: "{id}", with: String(userId))
         webService.get(url: url, params: nil, httpMethod: "GET") { (data, error) in
             if let error = error {
                 completion(nil, error)
             } else {
                 if let data = data {
+                    let decoder = JSONDecoder()
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                        if let jsonObj = json as? Any {
-                            let person = Person(jsonObj: jsonObj as! [String : Any])
-                            completion(person, nil)
-                        }
+                        let user = try decoder.decode(User.self, from: data)
+                        completion(user, nil)
                     } catch {
                         completion(nil, .APIError("Some error occurred"))
                     }

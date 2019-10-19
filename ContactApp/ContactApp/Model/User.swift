@@ -18,6 +18,9 @@ struct User: Codable {
     var favorite: Bool
     var createdAt: String
     var updatedAt: String
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
