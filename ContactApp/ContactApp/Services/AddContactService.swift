@@ -8,9 +8,16 @@
 
 import Foundation
 
+/// Service class to handle API operations related to Add/Edit Module
 class AddContactService {
+
     private let webService = WebServiceManager()
-    
+
+    /// This method will save contact to the backend server
+    ///
+    /// - Parameters:
+    ///   - params: payload data in form key-value
+    ///   - completion: completion handler
     func addContact(params: [String:Any], completion: @escaping (_ contact:User?, _ errorMessage: APIErrorEnum?) -> ()) {
         webService.get(url: APIConstants.SAVE_CONTACT_URL, params: params, httpMethod: APIConstants.HTTP_POST) { (data, error) in
             if let error = error {

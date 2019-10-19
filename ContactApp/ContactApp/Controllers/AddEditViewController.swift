@@ -77,7 +77,7 @@ class AddEditViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func setupUI() {
+    private func setupUI() {
         headerView.backgroundColor = UIColor.clear
         let colorTop = UIColor.white.cgColor
         let colorBottom = Colors.getPrimaryColor(opacity: 0.28).cgColor
@@ -93,12 +93,6 @@ class AddEditViewController: UIViewController {
         profilePicImageView.clipsToBounds = true;
         profilePicImageView.layer.borderWidth = 3.0
         profilePicImageView.layer.borderColor = UIColor.white.cgColor
-        
-        uploadProfilePicBtn.layer.cornerRadius = 15.0
-        uploadProfilePicBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 20.0)
-        uploadProfilePicBtn.setTitle("\u{f030}", for: .normal)
-        uploadProfilePicBtn.setTitleColor(Colors.getPrimaryColor(opacity: 1.0), for: .normal)
-        uploadProfilePicBtn.backgroundColor = UIColor.white
     }
     
     func showAlert(title: String, message: String) {
@@ -121,39 +115,6 @@ extension AddEditViewController: AddEditViewModelProtocol {
             }
         } else {
             self.dismiss(animated: true, completion: nil)
-        }
-    }
-}
-
-extension AddEditViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("test")
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        updateUserData(textField: textField)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        updateUserData(textField: textField)
-        return false
-    }
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        updateUserData(textField: textField)
-        return true
-    }
-    
-    func updateUserData(textField: UITextField) {
-        if textField.tag == FIRST_NAME_FIELD_TAG {
-            viewModel?.newUser.firstName = textField.text
-        } else if textField.tag == LAST_NAME_FIELD_TAG {
-            viewModel?.newUser.lastName = textField.text
-        } else if textField.tag == MOBILE_FIELD_TAG {
-            viewModel?.newUser.phoneNumber = textField.text
-        } else if textField.tag == EMAIL_FIELD_TAG {
-            viewModel?.newUser.email = textField.text
         }
     }
 }
