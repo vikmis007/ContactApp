@@ -24,18 +24,6 @@ class ListTableViewCell: UITableViewCell {
 
 extension ListTableViewCell {
     func updateCell(person: Person?) {
-        //TODO: check null for image
-        
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            do {
-//                let data = try Data(contentsOf: URL(string: "\(BASE_URL)\(person.profilePic)")!)
-//                DispatchQueue.main.async {
-//                    self.profileImage.cacheImage(urlString: "\(BASE_URL)\(person.profilePic)")
-//                }
-//            } catch {
-//                print("error while loading profile pic")
-//            }
-//        }
         guard let person = person else {
             return
         }
