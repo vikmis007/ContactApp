@@ -44,7 +44,7 @@ extension ListTableViewCell {
 //            }
 //        }
         self.profileImage.cacheImage(urlString: "\(BASE_URL)\(person.profile_pic)")
-        fullName.text = person.fullName
+        fullName.text = person.first_name
         favoriteBtn.isHidden = !person.favorite
     }
 }

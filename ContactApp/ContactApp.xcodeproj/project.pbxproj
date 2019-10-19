@@ -26,6 +26,10 @@
 		9BD07EB5235B371000C7EC98 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EB3235B371000C7EC98 /* ListTableViewCell.swift */; };
 		9BD07EB6235B371000C7EC98 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07EB4235B371000C7EC98 /* ListTableViewCell.xib */; };
 		9BD07EBA235B37CB00C7EC98 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */; };
+		9BD07EC0235B3B6900C7EC98 /* UpdateContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EBC235B3B6800C7EC98 /* UpdateContactService.swift */; };
+		9BD07EC1235B3B6900C7EC98 /* AddContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EBD235B3B6800C7EC98 /* AddContactService.swift */; };
+		9BD07EC2235B3B6900C7EC98 /* ListContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EBE235B3B6900C7EC98 /* ListContactService.swift */; };
+		9BD07EC3235B3B6900C7EC98 /* DetailContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EBF235B3B6900C7EC98 /* DetailContactService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		9BD07EB3235B371000C7EC98 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		9BD07EB4235B371000C7EC98 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		9BD07EBC235B3B6800C7EC98 /* UpdateContactService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateContactService.swift; sourceTree = "<group>"; };
+		9BD07EBD235B3B6800C7EC98 /* AddContactService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactService.swift; sourceTree = "<group>"; };
+		9BD07EBE235B3B6900C7EC98 /* ListContactService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListContactService.swift; sourceTree = "<group>"; };
+		9BD07EBF235B3B6900C7EC98 /* DetailContactService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailContactService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +133,7 @@
 		9BD07E63235B30FB00C7EC98 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
+				9BD07EC4235B3B6F00C7EC98 /* Services */,
 				9BD07E73235B30FC00C7EC98 /* Info.plist */,
 				9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */,
 				9BD07E6E235B30FC00C7EC98 /* Assets.xcassets */,
@@ -215,6 +224,17 @@
 				9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		9BD07EC4235B3B6F00C7EC98 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9BD07EBD235B3B6800C7EC98 /* AddContactService.swift */,
+				9BD07EBF235B3B6900C7EC98 /* DetailContactService.swift */,
+				9BD07EBE235B3B6900C7EC98 /* ListContactService.swift */,
+				9BD07EBC235B3B6800C7EC98 /* UpdateContactService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,9 +376,13 @@
 				9BD07E99235B320600C7EC98 /* ImageCache.swift in Sources */,
 				9BD07EB0235B364200C7EC98 /* ListViewModel.swift in Sources */,
 				9BD07EB5235B371000C7EC98 /* ListTableViewCell.swift in Sources */,
+				9BD07EC0235B3B6900C7EC98 /* UpdateContactService.swift in Sources */,
 				9BD07EA2235B345000C7EC98 /* Utils.swift in Sources */,
 				9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */,
+				9BD07EC3235B3B6900C7EC98 /* DetailContactService.swift in Sources */,
 				9BD07EA0235B345000C7EC98 /* LoadingIndicator.swift in Sources */,
+				9BD07EC1235B3B6900C7EC98 /* AddContactService.swift in Sources */,
+				9BD07EC2235B3B6900C7EC98 /* ListContactService.swift in Sources */,
 				9BD07E98235B320600C7EC98 /* WebServiceManager.swift in Sources */,
 				9BD07EA1235B345000C7EC98 /* Reachability.swift in Sources */,
 				9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */,

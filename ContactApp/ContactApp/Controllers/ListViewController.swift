@@ -104,13 +104,14 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sectionTitle = viewModel?.sectionTitles[indexPath.section]
-        let sectionUsers:[Person] = (viewModel?.personsOgraniseDict[sectionTitle!])!
-        let person:Person = sectionUsers[indexPath.row]
-        
-        let detailVC: DetailViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
-        detailVC?.personId = person.id
-        self.navigationController?.pushViewController(detailVC!, animated: true)
+        //TODO: - Fix this
+//        let sectionTitle = viewModel?.sectionTitles[indexPath.section]
+//        let sectionUsers:[Person] = (viewModel?.personsOgraniseDict[sectionTitle!])!
+//        let person:Person = sectionUsers[indexPath.row]
+//
+//        let detailVC: DetailViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+//        detailVC?.personId = person.id
+//        self.navigationController?.pushViewController(detailVC!, animated: true)
     }
 }
 
