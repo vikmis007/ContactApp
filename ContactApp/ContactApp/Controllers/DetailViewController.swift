@@ -9,6 +9,8 @@
 import UIKit
 import MessageUI
 
+let ADD_EDIT_VIEWCONTROLLER_IDENTIFIER = "AddEditViewController"
+
 class DetailViewController: UIViewController {
 
     var personId: Int32?
@@ -31,7 +33,22 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var refreshBtn: UIButton!
-    
+
+    //MARK: - Life cycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+
+        viewModel = DetailViewModel()
+        viewModel?.delegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.getContactDetail(userId: personId ?? 0)
+    }
+
+    //MARK: - IBActions
     @IBAction func refreshBtnTapped(_ sender: UIButton) {
         errorView.isHidden = true
         viewModel?.getContactDetail(userId: personId ?? 0)
@@ -53,26 +70,19 @@ class DetailViewController: UIViewController {
         let isFavorite = viewModel?.user?.favorite
         viewModel?.toggleFavorite(userId: personId ?? 0, isFavorite: !(isFavorite!))
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        
-        viewModel = DetailViewModel()
-        viewModel?.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel?.getContactDetail(userId: personId ?? 0)
+
+    @objc func editBtnTapped() {
+        let addEditVC: AddEditViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: ADD_EDIT_VIEWCONTROLLER_IDENTIFIER) as! AddEditViewController
+        addEditVC.userOrig = viewModel?.user
+        addEditVC.isNavigatedForEdit = true
+        self.present(addEditVC, animated: true, completion: nil)
     }
 
     func getPrimaryColor(opacity: CGFloat) -> UIColor {
         return UIColor(red: 80.0/255.0, green: 227.0/255.0, blue: 194.0/255.0, alpha: opacity);
     }
 
-    
-    func setupUI() {
+    private func setupUI() {
         //To remove border from navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -89,42 +99,16 @@ class DetailViewController: UIViewController {
         headerView.layer.insertSublayer(colorGradient, at: 0)
         
         messageBtn.layer.cornerRadius = 18.0
-        messageBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 20.0)
-        messageBtn.setTitle("\u{f075}", for: .normal)
-        messageBtn.setTitleColor(UIColor.white, for: .normal)
-        messageBtn.backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
-        
         callBtn.layer.cornerRadius = 18.0
-        callBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 20.0)
-        callBtn.setTitle("\u{f095}", for: .normal)
-        callBtn.setTitleColor(UIColor.white, for: .normal)
-        callBtn.backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
-        
         emailBtn.layer.cornerRadius = 18.0
-        emailBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 20.0)
-        emailBtn.setTitle("\u{f0e0}", for: .normal)
-        emailBtn.setTitleColor(UIColor.white, for: .normal)
-        emailBtn.backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
-        
         favoriteBtn.layer.cornerRadius = 18.0
-        favoriteBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 20.0)
-        favoriteBtn.setTitle("\u{f005}", for: .normal)
-        favoriteBtn.setTitleColor(UIColor.white, for: .normal)
-        favoriteBtn.backgroundColor = Colors.backgroundColor()
      
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true;
         profileImage.layer.borderWidth = 3.0
         profileImage.layer.borderColor = UIColor.white.cgColor
     }
-    
-    @objc func editBtnTapped() {
-        let addEditVC: AddEditViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEditViewController") as! AddEditViewController
-        addEditVC.userOrig = viewModel?.user
-        addEditVC.isNavigatedForEdit = true
-        self.present(addEditVC, animated: true, completion: nil)
-    }
-    
+
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -138,7 +122,7 @@ extension DetailViewController: DetailViewModelProtocol {
         if let msg = viewModel?.apiErrorMessage {
             switch(msg) {
             case .NoInternet:
-                errorLabel.text = "No internet !!"
+                errorLabel.text = MessageConstant.NO_INTERNET_MESSAGE
             case .APIError(let errorMsg):
                 errorLabel.text = errorMsg
             }
@@ -149,11 +133,11 @@ extension DetailViewController: DetailViewModelProtocol {
             self.emailLabel.text = viewModel?.user?.email
             self.mobileLabel.text =  viewModel?.user?.phoneNumber
             if viewModel?.user?.favorite ?? false {
-                favoriteBtn.isSelected = true // .backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
+                favoriteBtn.isSelected = true
             } else {
-                favoriteBtn.isSelected = false //favoriteBtn.backgroundColor = Colors.backgroundColor()
+                favoriteBtn.isSelected = false
             }
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editBtnTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: MessageConstant.EDIT_TITLE, style: .plain, target: self, action: #selector(editBtnTapped))
         }
     }
 }
@@ -174,6 +158,7 @@ extension DetailViewController: MFMessageComposeViewControllerDelegate {
     }
 }
 
+//MARK: - EXtensions to avail device services
 extension DetailViewController: MFMailComposeViewControllerDelegate {
     func sendEmail(recipient: String) {
         if MFMailComposeViewController.canSendMail() {

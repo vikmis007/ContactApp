@@ -24,12 +24,9 @@ class ListViewController: UIViewController {
         return fetchedResultsController
     }()
 
-
     private var viewModel: ListViewModel?
-    
-    
+
     @IBOutlet weak var errorView: UIView!
-    
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var refreshBtn: UIButton!
     @IBOutlet weak var listTableView: UITableView!
@@ -38,10 +35,10 @@ class ListViewController: UIViewController {
         errorView.isHidden = true
         viewModel?.getContactList()
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        refreshBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 14.0)
+
         refreshBtn.setTitle("\u{f01e} Refresh", for: .normal)
         refreshBtn.setTitleColor(Colors.getPrimaryColor(opacity: 1.0), for: .normal)
         refreshBtn.layer.borderWidth = 1.0
@@ -54,7 +51,6 @@ class ListViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel = ListViewModel()
         viewModel?.delegate = self
-
         getContactList()
     }
     

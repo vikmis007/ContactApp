@@ -13,11 +13,14 @@ let LAST_NAME_FIELD_TAG = 102
 let MOBILE_FIELD_TAG = 103
 let EMAIL_FIELD_TAG = 104
 
-
 class AddEditViewController: UIViewController {
 
     var viewModel: AddEditViewModel?
+
+    /// This variable will track navigation source if this view-contrller (optionally => `Add` OR `Edit`)
     internal var isNavigatedForEdit: Bool = false
+
+    /// This will hold original data when source navigation is edit
     var userOrig: User?
     
     @IBOutlet weak var headerView: UIView!
@@ -33,36 +36,15 @@ class AddEditViewController: UIViewController {
     @IBOutlet weak var lastNameErrorLabel: UILabel!
     @IBOutlet weak var mobileErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
-    
-    
-    @IBAction func viewTapped(_ sender: Any) {
-        view.endEditing(true)
-    }
-    
-    
-    @IBAction func doneBtnTapped(_ sender: Any) {
-        let validityStatus: PersonDataValidation =  (viewModel?.validate())!
-        switch(validityStatus) {
-            case .Valid:
-                viewModel?.addUpdateContactData(navigatedFromEdit: isNavigatedForEdit)
-        case .Invalid(let errorMesg):
-            showAlert(title: "", message: errorMesg)
-        }
-    }
-    
-    @IBAction func cancelBtnTapped(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
+
+    //MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+
         viewModel = AddEditViewModel()
         viewModel?.delegate = self
-        
+
         if(isNavigatedForEdit) {
             viewModel?.user = userOrig
             viewModel?.newUser = userOrig!
@@ -75,6 +57,25 @@ class AddEditViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    //MARK: - IBActions
+    @IBAction func viewTapped(_ sender: Any) {
+        view.endEditing(true)
+    }
+
+    @IBAction func doneBtnTapped(_ sender: Any) {
+        let validityStatus: PersonDataValidation =  (viewModel?.validate())!
+        switch(validityStatus) {
+            case .Valid:
+                viewModel?.addUpdateContactData(navigatedFromEdit: isNavigatedForEdit)
+        case .Invalid(let errorMesg):
+            showAlert(title: "", message: errorMesg)
+        }
+    }
+    
+    @IBAction func cancelBtnTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     private func setupUI() {
@@ -97,7 +98,7 @@ class AddEditViewController: UIViewController {
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: MessageConstant.OK_TITLE, style: .default, handler: nil)
         alert.addAction(okAction)
         self.show(alert, sender: nil)
     }
@@ -109,9 +110,9 @@ extension AddEditViewController: AddEditViewModelProtocol {
         if let msg = viewModel?.apiErrorMessage {
             switch(msg) {
             case .NoInternet:
-                showAlert(title: "", message: "No internet !!")
+                showAlert(title: MessageConstant.EMPTY_STRING, message: MessageConstant.NO_INTERNET_MESSAGE)
             case .APIError(let errorMsg):
-                showAlert(title: "", message: errorMsg)
+                showAlert(title: MessageConstant.EMPTY_STRING, message: errorMsg)
             }
         } else {
             self.dismiss(animated: true, completion: nil)

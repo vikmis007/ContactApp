@@ -33,7 +33,7 @@ class WebServiceManager {
                 do {
                     urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params!, options: [])
                 } catch is Error {
-                    completionHandler(nil, .APIError("Can not parse body params to json"))
+                    completionHandler(nil, .APIError(MessageConstant.PARSER_ERROR))
                 }
             }
             LoadingIndicator.shared.showLoadingIndicator()
