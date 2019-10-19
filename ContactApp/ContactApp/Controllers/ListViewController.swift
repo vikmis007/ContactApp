@@ -50,10 +50,11 @@ class ListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ADD_EDIT_IDENTIFIER {
-            let addEditVC: AddEditViewController = segue.destination as! AddEditViewController
-            addEditVC.isNavigatedForEdit = false
-        }
+        //TODO: - Fix this
+//        if segue.identifier == ADD_EDIT_IDENTIFIER {
+//            let addEditVC: AddEditViewController = segue.destination as! AddEditViewController
+//            addEditVC.isNavigatedForEdit = false
+//        }
     }
 }
 

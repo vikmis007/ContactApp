@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */; };
-		9BD07E67235B30FB00C7EC98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E66235B30FB00C7EC98 /* ViewController.swift */; };
 		9BD07E6A235B30FB00C7EC98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E68235B30FB00C7EC98 /* Main.storyboard */; };
 		9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E6B235B30FB00C7EC98 /* ContactApp.xcdatamodeld */; };
 		9BD07E6F235B30FC00C7EC98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E6E235B30FC00C7EC98 /* Assets.xcassets */; };
@@ -22,9 +21,11 @@
 		9BD07EA1235B345000C7EC98 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E9D235B345000C7EC98 /* Reachability.swift */; };
 		9BD07EA2235B345000C7EC98 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E9E235B345000C7EC98 /* Utils.swift */; };
 		9BD07EA3235B345000C7EC98 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E9F235B345000C7EC98 /* Colors.swift */; };
-		9BD07EA8235B359D00C7EC98 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EA5235B359D00C7EC98 /* AddEditViewController.swift */; };
 		9BD07EA9235B359D00C7EC98 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EA6235B359D00C7EC98 /* ListViewController.swift */; };
-		9BD07EAA235B359D00C7EC98 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EA7235B359D00C7EC98 /* DetailViewController.swift */; };
+		9BD07EB0235B364200C7EC98 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EAD235B364100C7EC98 /* ListViewModel.swift */; };
+		9BD07EB5235B371000C7EC98 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EB3235B371000C7EC98 /* ListTableViewCell.swift */; };
+		9BD07EB6235B371000C7EC98 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07EB4235B371000C7EC98 /* ListTableViewCell.xib */; };
+		9BD07EBA235B37CB00C7EC98 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,6 @@
 /* Begin PBXFileReference section */
 		9BD07E61235B30FB00C7EC98 /* ContactApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9BD07E66235B30FB00C7EC98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9BD07E69235B30FB00C7EC98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9BD07E6C235B30FB00C7EC98 /* ContactApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactApp.xcdatamodel; sourceTree = "<group>"; };
 		9BD07E6E235B30FC00C7EC98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,6 +69,12 @@
 		9BD07EA5235B359D00C7EC98 /* AddEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		9BD07EA6235B359D00C7EC98 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		9BD07EA7235B359D00C7EC98 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9BD07EAC235B364100C7EC98 /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		9BD07EAD235B364100C7EC98 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		9BD07EAE235B364100C7EC98 /* AddEditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditViewModel.swift; sourceTree = "<group>"; };
+		9BD07EB3235B371000C7EC98 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		9BD07EB4235B371000C7EC98 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,16 +125,18 @@
 		9BD07E63235B30FB00C7EC98 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
-				9BD07EAB235B35A300C7EC98 /* Controllers */,
-				9BD07EA4235B345C00C7EC98 /* Utility */,
-				9BD07E9B235B321000C7EC98 /* Wrapper */,
-				9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */,
-				9BD07E66235B30FB00C7EC98 /* ViewController.swift */,
-				9BD07E68235B30FB00C7EC98 /* Main.storyboard */,
-				9BD07E6E235B30FC00C7EC98 /* Assets.xcassets */,
-				9BD07E70235B30FC00C7EC98 /* LaunchScreen.storyboard */,
 				9BD07E73235B30FC00C7EC98 /* Info.plist */,
+				9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */,
+				9BD07E6E235B30FC00C7EC98 /* Assets.xcassets */,
+				9BD07EBB235B37CF00C7EC98 /* Constants */,
 				9BD07E6B235B30FB00C7EC98 /* ContactApp.xcdatamodeld */,
+				9BD07EAB235B35A300C7EC98 /* Controllers */,
+				9BD07E70235B30FC00C7EC98 /* LaunchScreen.storyboard */,
+				9BD07E68235B30FB00C7EC98 /* Main.storyboard */,
+				9BD07EA4235B345C00C7EC98 /* Utility */,
+				9BD07EB2235B364900C7EC98 /* ViewModel */,
+				9BD07EB7235B372600C7EC98 /* Views */,
+				9BD07E9B235B321000C7EC98 /* Wrapper */,
 			);
 			path = ContactApp;
 			sourceTree = "<group>";
@@ -180,6 +188,33 @@
 				9BD07EA6235B359D00C7EC98 /* ListViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9BD07EB2235B364900C7EC98 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BD07EAE235B364100C7EC98 /* AddEditViewModel.swift */,
+				9BD07EAC235B364100C7EC98 /* DetailViewModel.swift */,
+				9BD07EAD235B364100C7EC98 /* ListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9BD07EB7235B372600C7EC98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9BD07EB3235B371000C7EC98 /* ListTableViewCell.swift */,
+				9BD07EB4235B371000C7EC98 /* ListTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9BD07EBB235B37CF00C7EC98 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BD07E72235B30FC00C7EC98 /* LaunchScreen.storyboard in Resources */,
+				9BD07EB6235B371000C7EC98 /* ListTableViewCell.xib in Resources */,
 				9BD07E6F235B30FC00C7EC98 /* Assets.xcassets in Resources */,
 				9BD07E6A235B30FB00C7EC98 /* Main.storyboard in Resources */,
 			);
@@ -313,17 +349,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BD07EAA235B359D00C7EC98 /* DetailViewController.swift in Sources */,
 				9BD07E9A235B320600C7EC98 /* CoreDataManager.swift in Sources */,
 				9BD07EA3235B345000C7EC98 /* Colors.swift in Sources */,
+				9BD07EBA235B37CB00C7EC98 /* APIConstants.swift in Sources */,
 				9BD07EA9235B359D00C7EC98 /* ListViewController.swift in Sources */,
 				9BD07E99235B320600C7EC98 /* ImageCache.swift in Sources */,
+				9BD07EB0235B364200C7EC98 /* ListViewModel.swift in Sources */,
+				9BD07EB5235B371000C7EC98 /* ListTableViewCell.swift in Sources */,
 				9BD07EA2235B345000C7EC98 /* Utils.swift in Sources */,
 				9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */,
 				9BD07EA0235B345000C7EC98 /* LoadingIndicator.swift in Sources */,
-				9BD07E67235B30FB00C7EC98 /* ViewController.swift in Sources */,
 				9BD07E98235B320600C7EC98 /* WebServiceManager.swift in Sources */,
-				9BD07EA8235B359D00C7EC98 /* AddEditViewController.swift in Sources */,
 				9BD07EA1235B345000C7EC98 /* Reachability.swift in Sources */,
 				9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */,
 			);
