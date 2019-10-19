@@ -13,17 +13,6 @@ class Colors {
     
     static let shared = Colors()
     
-    let colorTop = UIColor.white.cgColor
-    let colorBottom = Colors.getPrimaryColor(opacity: 0.28).cgColor
-    
-    let gl: CAGradientLayer
-    
-    init() {
-        gl = CAGradientLayer()
-        gl.colors = [ colorTop, colorBottom]
-        gl.locations = [ 0.0, 1.0]
-    }
-    
     static func getPrimaryColor(opacity: CGFloat) -> UIColor {
         return UIColor(red: 80.0/255.0, green: 227.0/255.0, blue: 194.0/255.0, alpha: opacity);
     }

@@ -19,27 +19,27 @@ enum PersonDataValidation {
 
 class AddEditViewModel {
     weak var delegate: AddEditViewModelProtocol?
-    internal var person: Person?
-    internal var personNew: Person = Person()!
+    internal var user: User?
+    internal var newUser: User = User()
     internal var apiErrorMessage: APIErrorEnum?
     
     private let updateService = UpdateContactService()
     private let addService = AddContactService()
     
     func validate() ->PersonDataValidation {
-        if personNew.firstName.isEmpty {
+        if newUser.firstName == nil {
             return .Invalid("First Name is empty")
         }
-        if personNew.lastName.isEmpty {
+        if newUser.lastName == nil {
             return .Invalid("Last Name is empty")
         }
-        if personNew.phone.isEmpty {
+        if newUser.phoneNumber == nil {
             return .Invalid("Mobile number is empty")
         }
-        if personNew.email.isEmpty {
+        if newUser.email == nil {
             return .Invalid("Email is empty")
         }
-        if !Utils.isValidEmail(testStr: personNew.email) {
+        if !Utils.isValidEmail(testStr: newUser.email!) {
             return .Invalid("Email is invalid")
         }
         return .Valid
@@ -47,36 +47,35 @@ class AddEditViewModel {
     
     func addUpdateContactData(navigatedFromEdit: Bool) {
         apiErrorMessage = nil
-        
+
         let params:[String:Any] = [
-            "first_name": personNew.firstName,
-            "last_name": personNew.lastName,
-            "email": personNew.email,
-            "phone_number": personNew.phone,
+            "first_name": newUser.firstName!,
+            "last_name": newUser.lastName!,
+            "email": newUser.email!,
+            "phone_number": newUser.phoneNumber!,
             "favorite": false
         ]
         
         if navigatedFromEdit {
-            if person == personNew {
+            if user == newUser {
                 self.delegate?.reloadUI()
             } else {
-                updateService.updateContact(userId: personNew.id, params: params) { (person, errorEnum) in
+                updateService.updateContact(userId: newUser.id!, params: params) { (user, errorEnum) in
                     if let msg = errorEnum {
                         self.apiErrorMessage = msg
                     } else {
-                        self.person = person
-                        CoreDataManager.shared.updateObject(person: person!)
+                        self.user = user
+                        CoreDataManager.shared.updateObject(user: user!)
                     }
                     self.delegate?.reloadUI()
                 }
             }
         } else {
-            addService.addContact(params: params) { (person, errorEnum) in
+            addService.addContact(params: params) { (user, errorEnum) in
                 if let msg = errorEnum {
                     self.apiErrorMessage = msg
                 } else {
-                    self.person = person
-                    CoreDataManager.shared.insertObject(person: person!)
+                    CoreDataManager.shared.insertObject(user: user!)
                 }
                 self.delegate?.reloadUI()
             }

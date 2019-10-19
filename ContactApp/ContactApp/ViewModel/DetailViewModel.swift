@@ -38,7 +38,7 @@ class DetailViewModel {
                 self.apiErrorMessage = msg
             } else {
                 self.user = user
-                //TODO: - Update in local DB
+                CoreDataManager.shared.updateObject(user: user!)
             }
             self.delegate?.updateUI()
         }

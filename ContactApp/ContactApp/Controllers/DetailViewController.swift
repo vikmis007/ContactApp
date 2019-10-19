@@ -66,6 +66,11 @@ class DetailViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel?.getContactDetail(userId: personId ?? 0)
     }
+
+    func getPrimaryColor(opacity: CGFloat) -> UIColor {
+        return UIColor(red: 80.0/255.0, green: 227.0/255.0, blue: 194.0/255.0, alpha: opacity);
+    }
+
     
     func setupUI() {
         //To remove border from navigation bar
@@ -74,9 +79,14 @@ class DetailViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = Colors.getPrimaryColor(opacity: 1.0)
         
         headerView.backgroundColor = UIColor.clear
-        let backgroundLayer = Colors.shared.gl
-        backgroundLayer.frame = headerView.frame
-        headerView.layer.insertSublayer(backgroundLayer, at: 0)
+
+        let colorTop = UIColor.white.cgColor
+        let colorBottom = getPrimaryColor(opacity: 0.28).cgColor
+        let colorGradient: CAGradientLayer =  CAGradientLayer()
+        colorGradient.colors = [ colorTop, colorBottom]
+        colorGradient.locations = [ 0.0, 1.0]
+        colorGradient.frame = headerView.frame
+        headerView.layer.insertSublayer(colorGradient, at: 0)
         
         messageBtn.layer.cornerRadius = 18.0
         messageBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 20.0)
@@ -109,10 +119,10 @@ class DetailViewController: UIViewController {
     }
     
     @objc func editBtnTapped() {
-//        let addEditVC: AddEditViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEditViewController") as? AddEditViewController
-//        addEditVC?.personOrig = viewModel?.person
-//        addEditVC?.isNavigatedForEdit = true
-//        self.present(addEditVC!, animated: true, completion: nil)
+        let addEditVC: AddEditViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEditViewController") as! AddEditViewController
+        addEditVC.userOrig = viewModel?.user
+        addEditVC.isNavigatedForEdit = true
+        self.present(addEditVC, animated: true, completion: nil)
     }
     
     private func showAlert(title: String, message: String) {
@@ -139,9 +149,9 @@ extension DetailViewController: DetailViewModelProtocol {
             self.emailLabel.text = viewModel?.user?.email
             self.mobileLabel.text =  viewModel?.user?.phoneNumber
             if viewModel?.user?.favorite ?? false {
-                favoriteBtn.backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
+                favoriteBtn.isSelected = true // .backgroundColor = Colors.getPrimaryColor(opacity: 1.0)
             } else {
-                favoriteBtn.backgroundColor = Colors.backgroundColor()
+                favoriteBtn.isSelected = false //favoriteBtn.backgroundColor = Colors.backgroundColor()
             }
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editBtnTapped))
         }

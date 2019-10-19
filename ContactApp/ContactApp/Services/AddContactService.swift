@@ -7,25 +7,22 @@
 //
 
 import Foundation
-let ADD_CONTACT_URL = "/contacts.json"
 
 class AddContactService {
-    private let webService = WebService()
+    private let webService = WebServiceManager()
     
-    func addContact(params: [String:Any], completion: @escaping (_ contact:Person?, _ errorMessage: APIErrorEnum?) -> ()) {
-        webService.get(url: ADD_CONTACT_URL, params: params, httpMethod: "POST") { (data, error) in
+    func addContact(params: [String:Any], completion: @escaping (_ contact:User?, _ errorMessage: APIErrorEnum?) -> ()) {
+        webService.get(url: APIConstants.SAVE_CONTACT_URL, params: params, httpMethod: APIConstants.HTTP_POST) { (data, error) in
             if let error = error {
                 completion(nil, error)
             } else {
                 if let data = data {
+                    let decoder = JSONDecoder()
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                        if let jsonObj = json as? Any {
-                            let person = Person(jsonObj: jsonObj as! [String : Any])
-                            completion(person, nil)
-                        }
+                        let user = try decoder.decode(User.self, from: data)
+                        completion(user, nil)
                     } catch {
-                        completion(nil, .APIError("Some error occurred"))
+                        completion(nil, .APIError(MessageConstant.ERROR_MESSAGE))
                     }
                 }
             }

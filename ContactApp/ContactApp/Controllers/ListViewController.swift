@@ -8,11 +8,23 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 let listContactCellIdentifier = "ListTableViewCell";
+let listTableCell = "ListTableViewCell"
 let ADD_EDIT_IDENTIFIER = "addUserIdentifier"
 
 class ListViewController: UIViewController {
+
+    lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
+        let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "initial", ascending: true)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.persistentContainer.viewContext, sectionNameKeyPath: "initial", cacheName: nil)
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
+
+
     private var viewModel: ListViewModel?
     
     
@@ -42,65 +54,31 @@ class ListViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel = ListViewModel()
         viewModel?.delegate = self
-        viewModel?.getContactList()
+
+        getContactList()
     }
     
     func registerCell() {
-        listTableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: listContactCellIdentifier)
+        listTableView.register(UINib(nibName: listTableCell, bundle: nil), forCellReuseIdentifier: listContactCellIdentifier)
+    }
+
+    private func getContactList() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Unable to perform fetch: \(error.localizedDescription)")
+        }
+
+        if fetchedResultsController.sections?.count ?? 0 <= 0 {
+            viewModel?.getContactList()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //TODO: - Fix this
-//        if segue.identifier == ADD_EDIT_IDENTIFIER {
-//            let addEditVC: AddEditViewController = segue.destination as! AddEditViewController
-//            addEditVC.isNavigatedForEdit = false
-//        }
-    }
-}
-
-extension ListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if let sections = viewModel?.fetchedResultsController.sections {
-            return sections.count
+        if segue.identifier == ADD_EDIT_IDENTIFIER {
+            let addEditVC: AddEditViewController = segue.destination as! AddEditViewController
+            addEditVC.isNavigatedForEdit = false
         }
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel?.fetchedResultsController.sections![section].indexTitle
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = viewModel?.fetchedResultsController.sections {
-            let sectionInfo = sections[section]
-            return sectionInfo.numberOfObjects
-        }
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListTableViewCell = listTableView.dequeueReusableCell(withIdentifier: listContactCellIdentifier) as! ListTableViewCell
-
-        let person = viewModel?.fetchedResultsController.object(at: indexPath)
-        cell.updateCell(person: person)
-        return cell
-    }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return viewModel?.fetchedResultsController.sectionIndexTitles
-    }
-
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return viewModel?.fetchedResultsController.section(forSectionIndexTitle: title, at: index) ?? 0
-    }
-}
-
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let person = viewModel?.fetchedResultsController.object(at: indexPath)
-        let detailVC: DetailViewController? = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
-        detailVC?.personId = person?.id
-        self.navigationController?.pushViewController(detailVC!, animated: true)
     }
 }
 
@@ -115,7 +93,6 @@ extension ListViewController: ListViewModelProtocol {
             }
             errorView.isHidden = false
         }
-        listTableView.reloadData()
     }
 }
 

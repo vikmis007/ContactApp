@@ -18,7 +18,7 @@ class AddEditViewController: UIViewController {
 
     var viewModel: AddEditViewModel?
     internal var isNavigatedForEdit: Bool = false
-    var personOrig: Person?
+    var userOrig: User?
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var profilePicImageView: UIImageView!
@@ -64,24 +64,30 @@ class AddEditViewController: UIViewController {
         viewModel?.delegate = self
         
         if(isNavigatedForEdit) {
-            viewModel?.person = personOrig
-            viewModel?.personNew = personOrig!
-            
-            firstNameTextfield.text = personOrig?.firstName
-            lastNameTextfield.text = personOrig?.lastName
-            mobileTextfield.text = personOrig?.phone
-            emailTextfield.text = personOrig?.email
+            viewModel?.user = userOrig
+            viewModel?.newUser = userOrig!
+
+            firstNameTextfield.text = userOrig?.firstName
+            lastNameTextfield.text = userOrig?.lastName
+            mobileTextfield.text = userOrig?.phoneNumber
+            emailTextfield.text = userOrig?.email
         }
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func setupUI() {
         headerView.backgroundColor = UIColor.clear
-        let backgroundLayer = Colors.shared.gl
-        backgroundLayer.frame = headerView.frame
-        headerView.layer.insertSublayer(backgroundLayer, at: 0)
+        let colorTop = UIColor.white.cgColor
+        let colorBottom = Colors.getPrimaryColor(opacity: 0.28).cgColor
+        let colorGradient: CAGradientLayer =  CAGradientLayer()
+        colorGradient.colors = [ colorTop, colorBottom]
+        colorGradient.locations = [ 0.0, 1.0]
+        colorGradient.frame = headerView.frame
+        headerView.layer.insertSublayer(colorGradient, at: 0)
+        colorGradient.frame = headerView.frame
+        headerView.layer.insertSublayer(colorGradient, at: 0)
         
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width/2
         profilePicImageView.clipsToBounds = true;
@@ -133,33 +139,21 @@ extension AddEditViewController: UITextFieldDelegate {
         updateUserData(textField: textField)
         return false
     }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        updateUserData(textField: textField)
+        return true
+    }
     
     func updateUserData(textField: UITextField) {
         if textField.tag == FIRST_NAME_FIELD_TAG {
-            viewModel?.personNew.firstName = textField.text ?? "test"
+            viewModel?.newUser.firstName = textField.text
         } else if textField.tag == LAST_NAME_FIELD_TAG {
-            viewModel?.personNew.lastName = textField.text ?? ""
+            viewModel?.newUser.lastName = textField.text
         } else if textField.tag == MOBILE_FIELD_TAG {
-            viewModel?.personNew.phone = textField.text ?? ""
+            viewModel?.newUser.phoneNumber = textField.text
         } else if textField.tag == EMAIL_FIELD_TAG {
-            viewModel?.personNew.email = textField.text ?? ""
-        }
-    }
-}
-
-extension AddEditViewController {
-    //KeyPad related methods
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+            viewModel?.newUser.email = textField.text
         }
     }
 }

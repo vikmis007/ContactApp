@@ -17,10 +17,11 @@ struct APIConstants {
     static let GET_CONTACTS = "/contacts.json"
     static let DETAIL_CONTACT_URL = "/contacts/{id}.json"
     static let UPDATE_CONTACT_URL = "/contacts/{id}.json"
-    static let SAVE_CONTACT = "/contacts.json"
+    static let SAVE_CONTACT_URL = "/contacts.json"
 
     /// HTTP Methods:
-    static  let GET = "GET"
-    static  let POST = "POST"
-    static  let PUT = "PUT"
+    static  let HTTP_GET = "GET"
+    static  let HTTP_POST = "POST"
+    static  let HTTP_PUT = "PUT"
+    static  let HTTP_DELETE = "DELETE"
 }
