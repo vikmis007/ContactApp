@@ -12,7 +12,7 @@ let DETAIL_CONTACT_URL = "/contacts/{id}.json"
 class DetailContactService{
     private let webService = WebService()
     
-    func getContactDetail(userId: Int, completion: @escaping (_ contact:Person?, _ errorMessage: APIErrorEnum?) -> ()) {
+    func getContactDetail(userId: Int32, completion: @escaping (_ contact:Person?, _ errorMessage: APIErrorEnum?) -> ()) {
         let url = DETAIL_CONTACT_URL.replacingOccurrences(of: "{id}", with: String(userId))
         webService.get(url: url, params: nil, httpMethod: "GET") { (data, error) in
             if let error = error {

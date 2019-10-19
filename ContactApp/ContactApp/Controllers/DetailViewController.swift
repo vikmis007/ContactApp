@@ -11,7 +11,7 @@ import MessageUI
 
 class DetailViewController: UIViewController {
 
-    var personId: Int?
+    var personId: Int32?
     private var viewModel: DetailViewModel?
     
     @IBOutlet weak var headerView: UIView!

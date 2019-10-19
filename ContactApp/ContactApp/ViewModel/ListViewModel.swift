@@ -20,8 +20,8 @@ class ListViewModel {
 
     lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "first_name", ascending: true)]
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.persistentContainer.viewContext, sectionNameKeyPath: "initialLetter", cacheName: nil)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "initial", ascending: true)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.persistentContainer.viewContext, sectionNameKeyPath: "initial", cacheName: nil)
         return fetchedResultsController
     }()
 

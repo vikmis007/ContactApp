@@ -20,7 +20,7 @@ class DetailViewModel {
     private let detailService = DetailContactService()
     private let updateService = UpdateContactService()
     
-    func getContactDetail(userId: Int) {
+    func getContactDetail(userId: Int32) {
         detailService.getContactDetail(userId: userId) { (person, errorEnum) in
             if let msg = errorEnum {
                 self.apiErrorMessage = msg

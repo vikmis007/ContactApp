@@ -17,13 +17,6 @@ extension CodingUserInfoKey {
 @objc(Person)
 class Person: NSManagedObject, Decodable {
 
-    var initialLetter: String {
-        willAccessValue(forKey: "first_name")
-        let initial = (first_name! as NSString).substring(to: 1)
-        didAccessValue(forKey: "first_name")
-        return initial
-    }
-
     var fullName: String {
         return "\(first_name ?? "") \(last_name ?? ""   )"
     }
@@ -42,6 +35,16 @@ class Person: NSManagedObject, Decodable {
             profile_pic = try container.decodeIfPresent(String.self, forKey: .profile_pic)
             url = try container.decodeIfPresent(String.self, forKey: .url)
             favorite = try container.decodeIfPresent(Bool.self, forKey: .favorite) ?? false
+            if let firstName = first_name {
+                let firstChar = firstName[firstName.startIndex]
+                if let _ = Int(String(firstChar)) {
+                    initial = "#"
+                } else {
+                    initial = String(firstChar).uppercased()
+                }
+            } else {
+                initial = "#"
+            }
         } catch {
 
         }
