@@ -26,23 +26,7 @@ class CoreDataManager {
     /// - Parameter person: object to be inserted
     func insertObject(person: Person) {
     }
-    
-    /// This method will fetch all the objects from core data
-    ///
-    /// - Returns: array of user objects
-    func fetchObjectList() -> [Person] {
-        LoadingIndicator.shared.showLoadingIndicator()
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<Person>(entityName: "User")
-        
-        do {
-            people = try managedContext.fetch(fetchRequest)
-        } catch {
-            print("Could not fetch. \(error), \((error as NSError).userInfo)")
-        }
-        LoadingIndicator.shared.hideLoadingIndicator()
-        return people
-    }
+
     
     /// This mmethod will update a single core data entity
     ///

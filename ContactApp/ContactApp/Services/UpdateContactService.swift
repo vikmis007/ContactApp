@@ -10,7 +10,7 @@ import Foundation
 let UPDATE_CONTACT_URL = "/contacts/{id}.json"
 
 class UpdateContactService {
-    private let webService = WebService()
+    private let webService = WebServiceManager()
     
     func updateContact(userId: Int, params: [String:Any], completion: @escaping (_ contact:Person?, _ errorMessage: APIErrorEnum?) -> ()) {
         let url = UPDATE_CONTACT_URL.replacingOccurrences(of: "{id}", with: String(userId))

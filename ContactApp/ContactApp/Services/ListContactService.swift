@@ -10,7 +10,7 @@ import Foundation
 let LIST_CONTACT_URL = "/contacts.json"
 
 class ListContactService {
-    private let webService = WebService()
+    private let webService = WebServiceManager()
     
     func getContactList(completion: @escaping (_ contacts:[Person]?, _ errorMessage: APIErrorEnum?) -> ()) {
         webService.get(url: LIST_CONTACT_URL, params: nil, httpMethod: "GET") { (data, error) in
