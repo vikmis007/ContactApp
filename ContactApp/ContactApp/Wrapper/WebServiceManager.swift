@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-let BASE_URL = "http://gojek-contacts-app.herokuapp.com";
 
 enum APIErrorEnum {
     case NoInternet
@@ -25,14 +24,14 @@ class WebServiceManager {
         if(!Reachability.isConnectedToNetwork()) {
             completionHandler(nil, .NoInternet)
         } else {
-            let url = URL(string: "\(BASE_URL)\(url)")
+            let url = URL(string: "\(APIConstants.BASE_URL)\(url)")
             var urlRequest = URLRequest(url: url!)
             urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             urlRequest.httpMethod = httpMethod;
             if let _ = params {
                 do {
                     urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params!, options: [])
-                } catch is Error {
+                } catch {
                     completionHandler(nil, .APIError(MessageConstant.PARSER_ERROR))
                 }
             }

@@ -83,7 +83,7 @@ extension ListViewController: ListViewModelProtocol {
         if let msg = viewModel?.apiErrorMessage {
             switch(msg) {
                 case .NoInternet:
-                    errorLabel.text = "No internet !!"
+                    errorLabel.text = MessageConstant.NO_INTERNET_MESSAGE
                 case .APIError(let errorMsg):
                     errorLabel.text = errorMsg
             }
