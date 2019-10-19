@@ -18,10 +18,10 @@ class ListViewModel {
     weak var delegate: ListViewModelProtocol?
     private let listService = ListContactService()
 
-    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
+    lazy var fetchedResultsController: NSFetchedResultsController<Person> = {
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "first_name", ascending: true)]
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.persistentContainer.viewContext, sectionNameKeyPath: "first_name", cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.persistentContainer.viewContext, sectionNameKeyPath: "initialLetter", cacheName: nil)
         return fetchedResultsController
     }()
 
@@ -42,10 +42,6 @@ class ListViewModel {
                 if let msg = errorEnum {
                     self.apiErrorMessage = msg
                     self.delegate?.reloadUI()
-                } else {
-                    CoreDataManager.shared.insertObjects(persons: persons!)
-                    self.persons = persons
-                    self.organiseDataToSortedDict()
                 }
             }
         }

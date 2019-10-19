@@ -19,15 +19,15 @@ class ListContactService {
             } else {
                 if let data = data {
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                        var list:[Person] = [Person]()
-                        if let jsonArray = json as? [Any] {
-                            for object in jsonArray {
-                                let person = Person(jsonObj: object as! [String : Any])
-                                list.append(person!)
-                            }
+                        guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.context else {
+                            fatalError("Failed to retrieve context")
                         }
-                        completion(list, nil)
+                        let managedObjectContext = CoreDataStack.shared.persistentContainer.viewContext
+                        let decoder = JSONDecoder()
+                        decoder.userInfo[codingUserInfoKeyManagedObjectContext] = managedObjectContext
+                        _ = try decoder.decode([Person].self, from: data)
+                        try managedObjectContext.save()
+                        completion(nil, nil)
                     } catch {
                         completion(nil, .APIError("Some error occurred"))
                     }

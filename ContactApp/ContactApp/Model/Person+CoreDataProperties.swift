@@ -23,5 +23,5 @@ extension Person {
     @NSManaged public var profile_pic: String?
     @NSManaged public var favorite: Bool
     @NSManaged public var url: String?
-
+    
 }

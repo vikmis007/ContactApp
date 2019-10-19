@@ -11,7 +11,7 @@ import Foundation
 struct APIConstants {
 
     /// URL HOST
-    static let HOST_NAME = "http://gojek-contacts-app.herokuapp.com"
+    static let BASE_URL = "http://gojek-contacts-app.herokuapp.com"
 
     ///URL Endpoints
     static let GET_CONTACTS = "/contacts.json"

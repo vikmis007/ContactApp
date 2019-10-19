@@ -18,19 +18,12 @@ class ListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
         profileImage.layer.cornerRadius = profileImage.frame.size.height/2
-        favoriteBtn.titleLabel!.font = UIFont(name:"Font Awesome 5 Free", size: 14.0)
-        favoriteBtn.setTitle("\u{f005}", for: .normal)
-        favoriteBtn.setTitleColor(Colors.getPrimaryColor(opacity: 1.0), for: .normal)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
 }
 
 extension ListTableViewCell {
-    func updateCell(person: Person) {
+    func updateCell(person: Person?) {
         //TODO: check null for image
         
 //        DispatchQueue.global(qos: .userInitiated).async {
@@ -43,8 +36,20 @@ extension ListTableViewCell {
 //                print("error while loading profile pic")
 //            }
 //        }
-        self.profileImage.cacheImage(urlString: "\(BASE_URL)\(person.profile_pic)")
-        fullName.text = person.first_name
+        guard let person = person else {
+            return
+        }
+        if let profilePicUrl = person.profile_pic {
+            profileImage.cacheImage(urlString: "\(BASE_URL)\(profilePicUrl)")
+        } else {
+            profileImage.image = UIImage(named: AssetsConstant.PHOTO_PLACEHOLDER)
+        }
+        if person.favorite {
+            favoriteBtn.isSelected = true
+        } else {
+            favoriteBtn.isSelected = false
+        }
+        fullName.text = person.fullName
         favoriteBtn.isHidden = !person.favorite
     }
 }

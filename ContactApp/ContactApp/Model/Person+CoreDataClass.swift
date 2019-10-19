@@ -15,11 +15,23 @@ extension CodingUserInfoKey {
 }
 
 @objc(Person)
-public class Person: NSManagedObject, Decodable {
+class Person: NSManagedObject, Decodable {
+
+    var initialLetter: String {
+        willAccessValue(forKey: "first_name")
+        let initial = (first_name! as NSString).substring(to: 1)
+        didAccessValue(forKey: "first_name")
+        return initial
+    }
+
+    var fullName: String {
+        return "\(first_name ?? "") \(last_name ?? ""   )"
+    }
+    
     /// Init method to decode into model object
-    required convenience public init(from decoder: Decoder) throws {
+    required convenience init(from decoder: Decoder) throws {
         guard let managedContext = decoder.userInfo[CodingUserInfoKey.context!] as? NSManagedObjectContext, let entity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext) else {
-            return
+            fatalError(MessageConstant.FATAL_ERROR_OCCURED)
         }
         self.init(entity: entity, insertInto: managedContext)
         let container = try decoder.container(keyedBy: CodingKeys.self)

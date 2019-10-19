@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B45BCC0235B54F70023CFD0 /* MessageConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B45BCBF235B54F70023CFD0 /* MessageConstant.swift */; };
+		9B45BCC2235B665E0023CFD0 /* AssetsConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B45BCC1235B665E0023CFD0 /* AssetsConstant.swift */; };
 		9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */; };
 		9BD07E6A235B30FB00C7EC98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E68235B30FB00C7EC98 /* Main.storyboard */; };
 		9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E6B235B30FB00C7EC98 /* ContactApp.xcdatamodeld */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B45BCBF235B54F70023CFD0 /* MessageConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConstant.swift; sourceTree = "<group>"; };
+		9B45BCC1235B665E0023CFD0 /* AssetsConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsConstant.swift; sourceTree = "<group>"; };
 		9BD07E61235B30FB00C7EC98 /* ContactApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BD07E69235B30FB00C7EC98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				9BD07EB9235B37CB00C7EC98 /* APIConstants.swift */,
+				9B45BCBF235B54F70023CFD0 /* MessageConstant.swift */,
+				9B45BCC1235B665E0023CFD0 /* AssetsConstant.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -392,10 +398,12 @@
 				9BD07E99235B320600C7EC98 /* ImageCache.swift in Sources */,
 				9BD07EB0235B364200C7EC98 /* ListViewModel.swift in Sources */,
 				9BD07EB5235B371000C7EC98 /* ListTableViewCell.swift in Sources */,
+				9B45BCC2235B665E0023CFD0 /* AssetsConstant.swift in Sources */,
 				9BD07EA2235B345000C7EC98 /* Utils.swift in Sources */,
 				9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */,
 				9BD07EA0235B345000C7EC98 /* LoadingIndicator.swift in Sources */,
 				9BD07EC2235B3B6900C7EC98 /* ListContactService.swift in Sources */,
+				9B45BCC0235B54F70023CFD0 /* MessageConstant.swift in Sources */,
 				9BD07E98235B320600C7EC98 /* WebServiceManager.swift in Sources */,
 				9BD07ECC235B468600C7EC98 /* Person+CoreDataClass.swift in Sources */,
 				9BD07EA1235B345000C7EC98 /* Reachability.swift in Sources */,

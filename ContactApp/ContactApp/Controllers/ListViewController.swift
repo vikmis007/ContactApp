@@ -60,45 +60,38 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let _ = viewModel?.personsOgraniseDict {
-            if (viewModel?.personsOgraniseDict.count)! > 0{
-                return viewModel?.sectionTitles.count ?? 0
-            }
+        if let sections = viewModel?.fetchedResultsController.sections {
+            return sections.count
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel?.sectionTitles[section]
+        return viewModel?.fetchedResultsController.sections![section].indexTitle
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let _ = viewModel?.personsOgraniseDict {
-            if (viewModel?.personsOgraniseDict.count)! > 0{
-                let sectionTitle = viewModel?.sectionTitles[section]
-                let sectionUsers:[Person] = (viewModel?.personsOgraniseDict[sectionTitle!])!
-                return sectionUsers.count
-            }
+        if let sections = viewModel?.fetchedResultsController.sections {
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListTableViewCell = listTableView.dequeueReusableCell(withIdentifier: listContactCellIdentifier) as! ListTableViewCell
-        
-        let sectionTitle = viewModel?.sectionTitles[indexPath.section]
-        let sectionUsers:[Person] = (viewModel?.personsOgraniseDict[sectionTitle!])!
-        let person:Person = sectionUsers[indexPath.row]
+
+        let person = viewModel?.fetchedResultsController.object(at: indexPath)
         cell.updateCell(person: person)
         return cell
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return viewModel?.sectionTitles
+        return viewModel?.fetchedResultsController.sectionIndexTitles
     }
-    
+
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return (viewModel?.sectionTitles.index(of:title))!
+        return viewModel?.fetchedResultsController.section(forSectionIndexTitle: title, at: index) ?? 0
     }
 }
 

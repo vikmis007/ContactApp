@@ -32,11 +32,12 @@ extension UIImageView {
                 }
             } else {
                 DispatchQueue.main.async {
-                    let imageToCache = UIImage(named: "placeholder.png")
+                    let imageToCache = UIImage(named: AssetsConstant.PHOTO_PLACEHOLDER)
                     imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
                     self.image = imageToCache
                 }
             }
+            self.layer.cornerRadius = self.frame.size.height/2
         }.resume()
     }
 }
