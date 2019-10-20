@@ -29,15 +29,18 @@ extension UIImageView {
                     let imageToCache = UIImage(data: data!)
                     imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
                     self.image = imageToCache
+                    self.layer.cornerRadius = self.frame.size.height/2
+
                 }
             } else {
                 DispatchQueue.main.async {
                     let imageToCache = UIImage(named: AssetsConstant.PHOTO_PLACEHOLDER)
                     imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
                     self.image = imageToCache
+                    self.layer.cornerRadius = self.frame.size.height/2
+
                 }
             }
-            self.layer.cornerRadius = self.frame.size.height/2
         }.resume()
     }
 }

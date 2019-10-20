@@ -14,12 +14,26 @@ enum APIErrorEnum {
     case APIError(String)
 }
 
-class WebServiceManager {
-    
-    let defaultSession = URLSession(configuration: .default)
-    var dataTask: URLSessionDataTask?
-    
-    func get(url:String, params:[String:Any]?, httpMethod: String ,completionHandler:@escaping (_ data: Data?, _ error: APIErrorEnum?) -> ()) {
+final class WebServiceManager {
+
+    /// To create a url session for API call
+    private let urlSession: CAURLSession
+
+    /// To initialise network engine with url session
+    ///
+    /// - Parameter urlSession: urlsession used for initialisation
+    init(urlSession: CAURLSession?) {
+        self.urlSession = urlSession ?? URLSession.shared
+    }
+
+    /// This method will send/recieve data over network for API
+    ///
+    /// - Parameters:
+    ///   - url: url endpoint of the API
+    ///   - params: body params to be sent in request (optional)
+    ///   - httpMethod: http method of the request GET/POST/PUT
+    ///   - completionHandler: completion handler
+    public func get(url:String, params:[String:Any]?, httpMethod: String ,completionHandler:@escaping (_ data: Data?, _ error: APIErrorEnum?) -> ()) {
         
         if(!Reachability.isConnectedToNetwork()) {
             completionHandler(nil, .NoInternet)
@@ -37,8 +51,7 @@ class WebServiceManager {
             }
             LoadingIndicator.shared.showLoadingIndicator()
             DispatchQueue.global(qos: .default).async {
-                self.dataTask = self.defaultSession.dataTask(with: urlRequest) { data, response, error in
-                    defer { self.dataTask = nil }
+               self.urlSession.dataTask(with: urlRequest) { data, response, error in
                     if let error = error {
                         DispatchQueue.main.async {
                             LoadingIndicator.shared.hideLoadingIndicator()
@@ -62,7 +75,7 @@ class WebServiceManager {
                             completionHandler(nil, .APIError("Internal Server Error"))
                         }
                     }
-                    
+
                     if let data = data,
                         let response = response,
                         response.statusCode == 200 || response.statusCode == 201 {
@@ -71,8 +84,7 @@ class WebServiceManager {
                             completionHandler(data, nil)
                         }
                     }
-                }
-                self.dataTask?.resume()
+                }.resume()
             }
         }
     }

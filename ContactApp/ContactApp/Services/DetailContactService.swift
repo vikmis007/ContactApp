@@ -11,7 +11,14 @@ import Foundation
 /// Service class to handle API operations related to Contact detail Module
 class DetailContactService{
 
-    private let webService = WebServiceManager()
+    /// URLSession to be injected
+    private var urlSession: CAURLSession?
+
+    /// Convenience Initializer
+    convenience init(urlSession: CAURLSession?) {
+        self.init()
+        self.urlSession = urlSession
+    }
 
     /// This method will fetch contact detail related to contact id from API
     ///
@@ -20,7 +27,7 @@ class DetailContactService{
     ///   - completion: completion handler
     func getContactDetail(userId: Int32, completion: @escaping (_ contact:User?, _ errorMessage: APIErrorEnum?) -> ()) {
         let url = APIConstants.DETAIL_CONTACT_URL.replacingOccurrences(of: "{id}", with: String(userId))
-        webService.get(url: url, params: nil, httpMethod: APIConstants.HTTP_GET) { (data, error) in
+        WebServiceManager(urlSession: urlSession).get(url: url, params: nil, httpMethod: APIConstants.HTTP_GET) { (data, error) in
             if let error = error {
                 completion(nil, error)
             } else {

@@ -17,8 +17,16 @@ class DetailViewModel {
     internal var apiErrorMessage: APIErrorEnum?
     
     weak var delegate: DetailViewModelProtocol?
-    private let detailService = DetailContactService()
-    private let updateService = UpdateContactService()
+
+    lazy private var detailService: DetailContactService = DetailContactService()
+    lazy private var updateService: UpdateContactService = UpdateContactService()
+
+    /// convenience initilizer
+    convenience init(urlSession: CAURLSession?) {
+        self.init()
+        detailService = DetailContactService(urlSession: urlSession)
+        updateService = UpdateContactService(urlSession: urlSession)
+    }
     
     func getContactDetail(userId: Int32) {
         detailService.getContactDetail(userId: userId) { (user, errorEnum) in

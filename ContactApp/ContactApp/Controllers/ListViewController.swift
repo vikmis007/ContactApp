@@ -24,6 +24,9 @@ class ListViewController: UIViewController {
         return fetchedResultsController
     }()
 
+    /// To be injected in API call
+    var urlSesssion: CAURLSession?
+
     private var viewModel: ListViewModel?
 
     @IBOutlet weak var errorView: UIView!
@@ -39,26 +42,33 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        refreshBtn.setTitle("\u{f01e} Refresh", for: .normal)
-        refreshBtn.setTitleColor(Colors.getPrimaryColor(opacity: 1.0), for: .normal)
-        refreshBtn.layer.borderWidth = 1.0
-        refreshBtn.layer.borderColor = Colors.getPrimaryColor(opacity: 1.0).cgColor
-        
-        registerCell()
+        initialSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel = ListViewModel()
-        viewModel?.delegate = self
+
         getContactList()
     }
     
-    func registerCell() {
+    private func registerCell() {
         listTableView.register(UINib(nibName: listTableCell, bundle: nil), forCellReuseIdentifier: listContactCellIdentifier)
     }
 
-    private func getContactList() {
+    /// This method will be used for configuring the controller everytimes it reappears in the memory
+    func initialSetup() {
+        refreshBtn.setTitle("\u{f01e} Refresh", for: .normal)
+        refreshBtn.setTitleColor(Colors.getPrimaryColor(opacity: 1.0), for: .normal)
+        refreshBtn.layer.borderWidth = 1.0
+        refreshBtn.layer.borderColor = Colors.getPrimaryColor(opacity: 1.0).cgColor
+
+        registerCell()
+
+        viewModel = ListViewModel(urlSession: urlSesssion)
+        viewModel?.delegate = self
+    }
+
+    func getContactList() {
         do {
             try fetchedResultsController.performFetch()
         } catch let error as NSError {

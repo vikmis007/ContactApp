@@ -13,7 +13,7 @@
         <!--Contact-->
         <scene sceneID="AoS-6J-5pV">
             <objects>
-                <viewController id="eSI-DW-YD8" customClass="ListViewController" customModule="ContactApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewControllerIdentifier" id="eSI-DW-YD8" customClass="ListViewController" customModule="ContactApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tnr-uJ-oa1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

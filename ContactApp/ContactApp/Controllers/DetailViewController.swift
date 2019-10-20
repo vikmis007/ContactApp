@@ -14,7 +14,7 @@ let ADD_EDIT_VIEWCONTROLLER_IDENTIFIER = "AddEditViewController"
 class DetailViewController: UIViewController {
 
     var personId: Int32?
-    private var viewModel: DetailViewModel?
+    var viewModel: DetailViewModel?
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var messageBtn: UIButton!
@@ -34,13 +34,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var refreshBtn: UIButton!
 
+    /// To be injected in API call
+    var urlSesssion: CAURLSession?
+
     //MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-
-        viewModel = DetailViewModel()
-        viewModel?.delegate = self
+        initialSetup()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +80,16 @@ class DetailViewController: UIViewController {
 
     func getPrimaryColor(opacity: CGFloat) -> UIColor {
         return UIColor(red: 80.0/255.0, green: 227.0/255.0, blue: 194.0/255.0, alpha: opacity);
+    }
+
+    func initialSetup() {
+        setupUI()
+        setupViewModel()
+    }
+
+    private func setupViewModel() {
+        viewModel = DetailViewModel(urlSession: urlSesssion)
+        viewModel?.delegate = self
     }
 
     private func setupUI() {

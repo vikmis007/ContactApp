@@ -11,13 +11,20 @@ import Foundation
 /// Service class to handle API operations related to List Contact module
 class ListContactService {
 
-    private let webService = WebServiceManager()
+    /// URLSession to be injected
+    private var urlSession: CAURLSession?
+
+    /// Convenience Initializer
+    convenience init(urlSession: CAURLSession?) {
+        self.init()
+        self.urlSession = urlSession
+    }
 
     /// This method will bring all the contact availble in the database
     ///
     /// - Parameter completion: completion handler to return contact list
     func getContactList(completion: @escaping (_ contacts:[Person]?, _ errorMessage: APIErrorEnum?) -> ()) {
-        webService.get(url: APIConstants.GET_CONTACTS, params: nil, httpMethod: APIConstants.GET_CONTACTS) { (data, error) in
+        WebServiceManager(urlSession: urlSession).get(url: APIConstants.GET_CONTACTS, params: nil, httpMethod: APIConstants.GET_CONTACTS) { (data, error) in
             if let error = error {
                 completion(nil, error)
             } else {
