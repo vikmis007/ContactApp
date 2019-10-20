@@ -29,6 +29,7 @@
 		9BC28664235C959D00615183 /* ContactListSuccessData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BC28662235C959D00615183 /* ContactListSuccessData.json */; };
 		9BC2866A235C971200615183 /* SBURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC28669235C971200615183 /* SBURLSessionMock.swift */; };
 		9BC2866D235CA15100615183 /* DetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2866C235CA15100615183 /* DetailViewControllerSpec.swift */; };
+		9BC28670235CA34E00615183 /* ContactDetailSuccessData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BC2866F235CA34E00615183 /* ContactDetailSuccessData.json */; };
 		9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */; };
 		9BD07E6A235B30FB00C7EC98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E68235B30FB00C7EC98 /* Main.storyboard */; };
 		9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E6B235B30FB00C7EC98 /* ContactApp.xcdatamodeld */; };
@@ -87,6 +88,7 @@
 		9BC28662235C959D00615183 /* ContactListSuccessData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ContactListSuccessData.json; sourceTree = "<group>"; };
 		9BC28669235C971200615183 /* SBURLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBURLSessionMock.swift; sourceTree = "<group>"; };
 		9BC2866C235CA15100615183 /* DetailViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerSpec.swift; sourceTree = "<group>"; };
+		9BC2866F235CA34E00615183 /* ContactDetailSuccessData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ContactDetailSuccessData.json; sourceTree = "<group>"; };
 		9BD07E61235B30FB00C7EC98 /* ContactApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BD07E69235B30FB00C7EC98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		9BC28665235C95A300615183 /* StubbedData */ = {
 			isa = PBXGroup;
 			children = (
+				9BC2866F235CA34E00615183 /* ContactDetailSuccessData.json */,
 				9BC28662235C959D00615183 /* ContactListSuccessData.json */,
 			);
 			path = StubbedData;
@@ -483,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC28664235C959D00615183 /* ContactListSuccessData.json in Resources */,
+				9BC28670235CA34E00615183 /* ContactDetailSuccessData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

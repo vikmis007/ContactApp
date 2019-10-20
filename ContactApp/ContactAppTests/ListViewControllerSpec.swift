@@ -22,9 +22,6 @@ class ListViewControllerSpec: QuickSpec {
     /// Success URL for mocking API
     private var successURL: URL?
 
-    /// Failure URL for mocking API
-    private var failureURL: URL?
-
     override func spec() {
         successURL = self.contactListApiURL()
 
