@@ -16,9 +16,14 @@ protocol ListViewModelProtocol: class {
 class ListViewModel {
     internal var apiErrorMessage: APIErrorEnum?
     weak var delegate: ListViewModelProtocol?
-    private let listService = ListContactService()
+    lazy private var listService: ListContactService = ListContactService()
 
-    
+    /// convenience initilizer
+    convenience init(urlSession: CAURLSession?) {
+        self.init()
+        listService = ListContactService(urlSession: urlSession)
+    }
+
     func getContactList() {
         apiErrorMessage = nil
         listService.getContactList { (persons, errorEnum) in

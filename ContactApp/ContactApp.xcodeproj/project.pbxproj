@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,12 +25,15 @@
 		9B45BCD4235BA87B0023CFD0 /* AddEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07EAE235B364100C7EC98 /* AddEditViewModel.swift */; };
 		9B45BCD6235BC0400023CFD0 /* AddEditViewController+KeyboardLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B45BCD5235BC0400023CFD0 /* AddEditViewController+KeyboardLookup.swift */; };
 		9B45BCD8235BC0DC0023CFD0 /* AddEditViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B45BCD7235BC0DC0023CFD0 /* AddEditViewController+UITextFieldDelegate.swift */; };
+		9BC28660235C939B00615183 /* ListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2865F235C939B00615183 /* ListViewControllerSpec.swift */; };
+		9BC28664235C959D00615183 /* ContactListSuccessData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BC28662235C959D00615183 /* ContactListSuccessData.json */; };
+		9BC2866A235C971200615183 /* SBURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC28669235C971200615183 /* SBURLSessionMock.swift */; };
+		9BC2866D235CA15100615183 /* DetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC2866C235CA15100615183 /* DetailViewControllerSpec.swift */; };
 		9BD07E65235B30FB00C7EC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */; };
 		9BD07E6A235B30FB00C7EC98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E68235B30FB00C7EC98 /* Main.storyboard */; };
 		9BD07E6D235B30FB00C7EC98 /* ContactApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E6B235B30FB00C7EC98 /* ContactApp.xcdatamodeld */; };
 		9BD07E6F235B30FC00C7EC98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E6E235B30FC00C7EC98 /* Assets.xcassets */; };
 		9BD07E72235B30FC00C7EC98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD07E70235B30FC00C7EC98 /* LaunchScreen.storyboard */; };
-		9BD07E7D235B30FD00C7EC98 /* ContactAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E7C235B30FD00C7EC98 /* ContactAppTests.swift */; };
 		9BD07E88235B30FD00C7EC98 /* ContactAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E87235B30FD00C7EC98 /* ContactAppUITests.swift */; };
 		9BD07E98235B320600C7EC98 /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E95235B320600C7EC98 /* WebServiceManager.swift */; };
 		9BD07E99235B320600C7EC98 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD07E96235B320600C7EC98 /* ImageCache.swift */; };
@@ -80,6 +83,10 @@
 		9B45BCD0235BA4020023CFD0 /* ListViewController+NSFetchResultDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListViewController+NSFetchResultDelegate.swift"; sourceTree = "<group>"; };
 		9B45BCD5235BC0400023CFD0 /* AddEditViewController+KeyboardLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEditViewController+KeyboardLookup.swift"; sourceTree = "<group>"; };
 		9B45BCD7235BC0DC0023CFD0 /* AddEditViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEditViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		9BC2865F235C939B00615183 /* ListViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerSpec.swift; sourceTree = "<group>"; };
+		9BC28662235C959D00615183 /* ContactListSuccessData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ContactListSuccessData.json; sourceTree = "<group>"; };
+		9BC28669235C971200615183 /* SBURLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBURLSessionMock.swift; sourceTree = "<group>"; };
+		9BC2866C235CA15100615183 /* DetailViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerSpec.swift; sourceTree = "<group>"; };
 		9BD07E61235B30FB00C7EC98 /* ContactApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BD07E69235B30FB00C7EC98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,7 +95,6 @@
 		9BD07E71235B30FC00C7EC98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BD07E73235B30FC00C7EC98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BD07E78235B30FC00C7EC98 /* ContactAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BD07E7C235B30FD00C7EC98 /* ContactAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAppTests.swift; sourceTree = "<group>"; };
 		9BD07E7E235B30FD00C7EC98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BD07E83235B30FD00C7EC98 /* ContactAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD07E87235B30FD00C7EC98 /* ContactAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAppUITests.swift; sourceTree = "<group>"; };
@@ -173,6 +179,31 @@
 			path = "ViewController+Extension";
 			sourceTree = "<group>";
 		};
+		9BC28665235C95A300615183 /* StubbedData */ = {
+			isa = PBXGroup;
+			children = (
+				9BC28662235C959D00615183 /* ContactListSuccessData.json */,
+			);
+			path = StubbedData;
+			sourceTree = "<group>";
+		};
+		9BC28668235C96F700615183 /* NetworkEngine */ = {
+			isa = PBXGroup;
+			children = (
+				9BD07E95235B320600C7EC98 /* WebServiceManager.swift */,
+				9BC2866B235C971A00615183 /* Mock */,
+			);
+			path = NetworkEngine;
+			sourceTree = "<group>";
+		};
+		9BC2866B235C971A00615183 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				9BC28669235C971200615183 /* SBURLSessionMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		9BD07E58235B30FB00C7EC98 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +229,7 @@
 		9BD07E63235B30FB00C7EC98 /* ContactApp */ = {
 			isa = PBXGroup;
 			children = (
+				9BC28668235C96F700615183 /* NetworkEngine */,
 				9BD07EC4235B3B6F00C7EC98 /* Services */,
 				9BD07E73235B30FC00C7EC98 /* Info.plist */,
 				9BD07E64235B30FB00C7EC98 /* AppDelegate.swift */,
@@ -219,8 +251,10 @@
 		9BD07E7B235B30FC00C7EC98 /* ContactAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				9BD07E7C235B30FD00C7EC98 /* ContactAppTests.swift */,
+				9BC28665235C95A300615183 /* StubbedData */,
 				9BD07E7E235B30FD00C7EC98 /* Info.plist */,
+				9BC2865F235C939B00615183 /* ListViewControllerSpec.swift */,
+				9BC2866C235CA15100615183 /* DetailViewControllerSpec.swift */,
 			);
 			path = ContactAppTests;
 			sourceTree = "<group>";
@@ -238,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				9BD07E97235B320600C7EC98 /* CoreDataManager.swift */,
-				9BD07E95235B320600C7EC98 /* WebServiceManager.swift */,
 				9BD07EC5235B3DD400C7EC98 /* CoreDataStack.swift */,
 			);
 			path = Wrapper;
@@ -327,7 +360,6 @@
 				8F4980DF30C9F260B8350E6B /* Pods-ContactAppTests.debug.xcconfig */,
 				A9894316F8E7904B008710F5 /* Pods-ContactAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -450,6 +482,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BC28664235C959D00615183 /* ContactListSuccessData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +594,7 @@
 				9B45BCD8235BC0DC0023CFD0 /* AddEditViewController+UITextFieldDelegate.swift in Sources */,
 				9B45BCC4235B83F00023CFD0 /* DetailViewController.swift in Sources */,
 				9B45BCC5235B83F00023CFD0 /* DetailViewModel.swift in Sources */,
+				9BC2866A235C971200615183 /* SBURLSessionMock.swift in Sources */,
 				9BD07EC6235B3DD400C7EC98 /* CoreDataStack.swift in Sources */,
 				9BD07E9A235B320600C7EC98 /* CoreDataManager.swift in Sources */,
 				9BD07ECD235B468600C7EC98 /* Person+CoreDataProperties.swift in Sources */,
@@ -592,7 +626,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BD07E7D235B30FD00C7EC98 /* ContactAppTests.swift in Sources */,
+				9BC2866D235CA15100615183 /* DetailViewControllerSpec.swift in Sources */,
+				9BC28660235C939B00615183 /* ListViewControllerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

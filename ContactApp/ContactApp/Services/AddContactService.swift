@@ -11,7 +11,14 @@ import Foundation
 /// Service class to handle API operations related to Add/Edit Module
 class AddContactService {
 
-    private let webService = WebServiceManager()
+    /// URLSession to be injected
+    private var urlSession: CAURLSession?
+
+    /// Convenience Initializer
+    convenience init(urlSession: CAURLSession?) {
+        self.init()
+        self.urlSession = urlSession
+    }
 
     /// This method will save contact to the backend server
     ///
@@ -19,7 +26,7 @@ class AddContactService {
     ///   - params: payload data in form key-value
     ///   - completion: completion handler
     func addContact(params: [String:Any], completion: @escaping (_ contact:User?, _ errorMessage: APIErrorEnum?) -> ()) {
-        webService.get(url: APIConstants.SAVE_CONTACT_URL, params: params, httpMethod: APIConstants.HTTP_POST) { (data, error) in
+       WebServiceManager(urlSession: urlSession).get(url: APIConstants.SAVE_CONTACT_URL, params: params, httpMethod: APIConstants.HTTP_POST) { (data, error) in
             if let error = error {
                 completion(nil, error)
             } else {

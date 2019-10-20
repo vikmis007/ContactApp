@@ -28,7 +28,7 @@ extension ListTableViewCell {
             return
         }
         if let profilePicUrl = person.profile_pic {
-            profileImage.cacheImage(urlString: "\(BASE_URL)\(profilePicUrl)")
+            profileImage.cacheImage(urlString: "\(APIConstants.BASE_URL)\(profilePicUrl)")
         } else {
             profileImage.image = UIImage(named: AssetsConstant.PHOTO_PLACEHOLDER)
         }

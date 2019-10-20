@@ -10,8 +10,15 @@ import Foundation
 
 /// Service class to handle API operations related to Update in the contact data
 class UpdateContactService {
-    private let webService = WebServiceManager()
 
+    /// URLSession to be injected
+    private var urlSession: CAURLSession?
+
+    /// Convenience Initializer
+    convenience init(urlSession: CAURLSession?) {
+        self.init()
+        self.urlSession = urlSession
+    }
 
     /// This method will update data in server as well as in local database
     ///
@@ -21,7 +28,7 @@ class UpdateContactService {
     ///   - completion: completion handler
     func updateContact(userId: Int32, params: [String:Any], completion: @escaping (_ contact:User?, _ errorMessage: APIErrorEnum?) -> ()) {
         let url = APIConstants.UPDATE_CONTACT_URL.replacingOccurrences(of: "{id}", with: String(userId))
-        webService.get(url: url, params: params, httpMethod: APIConstants.HTTP_PUT) { (data, error) in
+        WebServiceManager(urlSession: urlSession).get(url: url, params: params, httpMethod: APIConstants.HTTP_PUT) { (data, error) in
             if let error = error {
                 completion(nil, error)
             } else {
